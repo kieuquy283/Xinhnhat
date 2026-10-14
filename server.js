@@ -67,14 +67,39 @@ const loveMessages = [
 // Routes
 app.get('/', (req, res) => {
     const customMessage = req.query.msg || req.query.message;
-    const defaultMessage = process.env.CARD_MESSAGE || "Chúc một nửa thế giới luôn ngập tràn niềm vui, rạng rỡ, xinh đẹp và hạnh phúc. Mong bạn luôn được yêu thương, trân trọng và tỏa sáng theo cách đặc biệt nhất của chính mình!";
+    const defaultMessage = process.env.CARD_MESSAGE || `Chúc bạn yêu 20/10 vui vẻ!
+
+Mình viết làm cái này trước lúc bạn thi nên là mình chúc bạn thi tốt nhé.
+Chúc bạn là luôn luôn xinh đẹp và hoàn thành được những mục tiêu sắp tới, hoàn thành KLTN, tốt nghiệp xuất sắc, có được dự định tương lai.
+
+Thật sự là từ lúc mà bạn bảo bạn thi xong bạn về quê, mình cũng có nhiều tâm trạng, cũng muốn gặp bạn để nói chuyện nhưng mà bạn còn những việc khác nữa. Mà mình cũng không biết là mình có gặp được bạn trước khi bạn về không, nên là mình nói một chút qua cái này nhé.
+
+Không phải mình nghĩ là bạn về quê thì bọn mình không còn liên lạc hay không gặp được nhau đâu mà mình nghĩ là bạn sắp học xong rồi, bạn cũng không ở HN, mình sợ bọn mình không còn điểm chung gì để nói chuyện hằng ngày nữa.
+
+Mình luôn ủng hộ mọi quyết định, mọi con đường của bạn. Dù bạn có dự định hay lựa chọn như thế nào, chắc chắn mình sẽ luôn ủng hộ và cố gắng hết mình để giúp đỡ bạn.
+
+Chỉ là bọn mình vốn tính cách, con người đã khác nhau. Giờ bọn sắp học xong rồi, cuộc sống bọn mình lại càng khác nhau nữa. Bạn 21 tuổi có những dự định về thời gian khác mà mình 21 tuổi lại có những dự định về thời gian khác. Hôm qua ấy, bạn bảo là bạn đã 21 tuổi rồi còn mình thì lại nghĩ mình mới 21 thôi mà. 
+
+Mình cũng mông lung lắm. Mình làm những thứ không chắc chắn nó sẽ có kết quả gì. Nếu mình sai, chắc chắn mình sẽ làm lại nhưng mà làm lại thì lại tốn thêm nhiều thời gian nữa. Rồi nếu làm lại mà vẫn sai thì phải đánh đổi bao nhiêu thời gian nữa.
+
+Bạn thích cuộc sống dễ chịu, ưa nghe lời dễ nghe trong khi mình lại không hay nói lời nhẹ nhàng. Mình biết là trong thời gian qua, bạn đã phải chịu đựng mình nhiều. Mình thương bạn lắm nhưng cũng chẳng thay đổi được thời gian. Có thể nhiều lúc bạn thấy mình thờ ơ, vô tâm hay tồi gì đó nhưng mình mong là bạn nhớ bạn luôn có vị trí đặc biệt đối với mình và mình thương bạn là thật.
+
+Mẹ mình hay dạy mình sự nhẹ nhàng, tử tế. Mình không giỏi dùng những điều đấy nhưng mà mình chưa gọt rũa hay làm cho nó hào nhoáng. Mình luôn muốn gửi gắm những điều đấy ở nơi bạn một cách chân thành nhất. Có thể là trước giờ mình làm chưa tốt nhưng nếu có cơ hội mình chắc chắn sẽ cố gắng.
+
+Chúc chúc bạn nhé.
+Luôn luôn xinh đẹp, luôn luôn hạnh phúc.
+Luôn có nhiều điều tốt đẹp trong cuộc sống.
+Luôn nhận được những điều may mắn.
+Luôn nhận được những điều nhẹ nhàng.`;
+
     const message = customMessage || defaultMessage;
     
     res.render('index', {
         message,
-        title: 'Happy Women\'s Day'
+        title: 'Chúc bạn yêu 20/10 vui vẻ!'
     });
 });
+
 
 
 

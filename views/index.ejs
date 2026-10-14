@@ -127,7 +127,7 @@
                     <!-- Tiêu đề nghệ thuật lấp lánh -->
                     <h1 class="card-headline">
                         <span class="script-accent">Happy</span>
-                        <span class="gold-gradient-text">Women's Day</span>
+                        <span class="gold-gradient-text">20 • 10</span>
                     </h1>
 
                     <div class="decorative-separator">
@@ -139,9 +139,14 @@
                     <!-- Khu vực hiển thị lời chúc trọng tâm -->
                     <div class="card-wish-container">
                         <div class="quote-mark quote-start">“</div>
-                        <p class="wish-text" id="wishText">
-                            <%= message %>
-                        </p>
+                        <div class="wish-text" id="wishText">
+                            <% 
+                                const paragraphs = message.split(/\n\s*\n/);
+                                paragraphs.forEach((para, idx) => { 
+                            %>
+                                <p class="wish-para <%= idx === 0 ? 'wish-para-lead' : '' %>"><%= para %></p>
+                            <%  }); %>
+                        </div>
                         <div class="quote-mark quote-end">”</div>
                     </div>
 
