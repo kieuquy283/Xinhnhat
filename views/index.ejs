@@ -36,87 +36,136 @@
         </button>
     </div>
 
-    <!-- Khung chứa Thiệp trung tâm -->
-    <main class="card-viewport" id="cardViewport">
-        <!-- Vòng hào quang phía sau thiệp -->
-        <div class="card-aura"></div>
+    <!-- Không gian chính: Phong bì thư & Chiếc thiệp -->
+    <main class="scene-viewport" id="sceneViewport">
+        <!-- Vòng hào quang phía sau -->
+        <div class="scene-aura"></div>
 
-        <!-- Chiếc Thiệp 3D Siêu Thực -->
-        <div class="romantic-card" id="romanticCard">
-            <!-- Hiệu ứng phản chiếu ánh sáng lướt qua mặt kính -->
-            <div class="card-shine"></div>
+        <!-- 1. PHONG BÌ THƯ SANG TRỌNG (ENVELOPE) -->
+        <div class="envelope-container" id="envelopeContainer">
+            <div class="envelope-box" id="envelopeBox">
+                <!-- Mặt sau phong bì -->
+                <div class="env-back"></div>
+                
+                <!-- Mô phỏng mẩu thiệp nằm sẵn bên trong phong bì -->
+                <div class="env-letter-peek"></div>
 
-            <!-- Họa tiết hoa văn góc thiệp -->
-            <div class="corner-ornament top-left">
-                <svg viewBox="0 0 60 60" fill="none">
-                    <path d="M5 55 C 5 25, 25 5, 55 5" stroke="url(#goldGradient)" stroke-width="2" stroke-linecap="round"/>
-                    <circle cx="5" cy="55" r="3" fill="#fbd786"/>
-                    <circle cx="55" cy="5" r="3" fill="#fbd786"/>
-                    <path d="M12 45 C 12 25, 25 12, 45 12" stroke="rgba(255, 215, 0, 0.4)" stroke-width="1.2" stroke-dasharray="2 3"/>
-                    <defs>
-                        <linearGradient id="goldGradient" x1="0%" y1="0%" x2="100%" y2="100%">
-                            <stop offset="0%" stop-color="#fff2a1"/>
-                            <stop offset="50%" stop-color="#e2a578"/>
-                            <stop offset="100%" stop-color="#f7797d"/>
-                        </linearGradient>
-                    </defs>
-                </svg>
-            </div>
-            <div class="corner-ornament top-right">
-                <svg viewBox="0 0 60 60" fill="none">
-                    <path d="M5 5 C 35 5, 55 25, 55 55" stroke="url(#goldGradient)" stroke-width="2" stroke-linecap="round"/>
-                    <circle cx="5" cy="5" r="3" fill="#fbd786"/>
-                    <circle cx="55" cy="55" r="3" fill="#fbd786"/>
-                    <path d="M15 12 C 35 12, 48 25, 48 45" stroke="rgba(255, 215, 0, 0.4)" stroke-width="1.2" stroke-dasharray="2 3"/>
-                </svg>
-            </div>
-            <div class="corner-ornament bottom-left">
-                <svg viewBox="0 0 60 60" fill="none">
-                    <path d="M5 5 C 5 35, 25 55, 55 55" stroke="url(#goldGradient)" stroke-width="2" stroke-linecap="round"/>
-                    <circle cx="5" cy="5" r="3" fill="#fbd786"/>
-                    <circle cx="55" cy="55" r="3" fill="#fbd786"/>
-                </svg>
-            </div>
-            <div class="corner-ornament bottom-right">
-                <svg viewBox="0 0 60 60" fill="none">
-                    <path d="M55 5 C 55 35, 35 55, 5 55" stroke="url(#goldGradient)" stroke-width="2" stroke-linecap="round"/>
-                    <circle cx="55" cy="5" r="3" fill="#fbd786"/>
-                    <circle cx="5" cy="55" r="3" fill="#fbd786"/>
-                </svg>
-            </div>
+                <!-- Các nếp gấp mặt trước phong bì -->
+                <div class="env-pocket"></div>
+                <div class="env-fold-left"></div>
+                <div class="env-fold-right"></div>
+                <div class="env-fold-bottom"></div>
 
-            <!-- Nội dung Thiệp -->
-            <div class="card-inner">
-                <!-- Tiêu đề nghệ thuật lấp lánh -->
-                <h1 class="card-headline">
-                    <span class="script-accent">Happy</span>
-                    <span class="gold-gradient-text">Women's Day</span>
-                </h1>
-
-                <div class="decorative-separator">
-                    <span class="line line-left"></span>
-                    <span class="flower-center">❦ ✦ ❦</span>
-                    <span class="line line-right"></span>
-                </div>
-
-                <!-- Khu vực hiển thị lời chúc trọng tâm -->
-                <div class="card-wish-container">
-                    <div class="quote-mark quote-start">“</div>
-                    <p class="wish-text" id="wishText">
-                        <%= message %>
-                    </p>
-                    <div class="quote-mark quote-end">”</div>
-                </div>
-
-                <!-- Dấu ấn thơ mộng cuối thiệp -->
-                <div class="card-footer-seal">
-                    <div class="seal-flower">💐</div>
-                    <p class="seal-caption">Mãi luôn rạng ngời & tràn đầy hạnh phúc</p>
-                    <div class="sparkle-row">
-                        <span>✨</span>
-                        <span>💕</span>
-                        <span>✨</span>
+                <!-- Nắp phong bì có thể lật mở 3D -->
+                <div class="env-flap" id="envFlap">
+                    <div class="env-flap-inner"></div>
+                    <!-- Con dấu sáp niêm phong hoa hồng mạ vàng -->
+                    <div class="wax-seal" id="waxSeal">
+                        <div class="seal-glow"></div>
+                        <div class="seal-badge">
+                            <span class="seal-emoji">🌸</span>
+                        </div>
                     </div>
+                </div>
+            </div>
+
+            <!-- Gợi ý bấm mở thư -->
+            <div class="envelope-guide">
+                <span class="guide-sparkle">✨</span>
+                <span>Chạm vào phong bì để mở thiệp</span>
+                <span class="guide-sparkle">✨</span>
+            </div>
+        </div>
+
+        <!-- 2. CHIẾC THIỆP 3D SIÊU THỰC (TỪ TỪ HIỆN LÊN VÀ CÓ THỂ CUỘN NỘI DUNG) -->
+        <div class="card-wrapper" id="cardWrapper">
+            <!-- Nút đóng/gấp thiệp lại vào phong bì -->
+            <button class="close-card-btn" id="closeCardBtn" title="Gấp thiệp lại">
+                <i class="fas fa-times"></i>
+                <span>Gấp thiệp lại</span>
+            </button>
+
+            <div class="romantic-card" id="romanticCard">
+                <!-- Hiệu ứng phản chiếu ánh sáng lướt qua mặt kính -->
+                <div class="card-shine"></div>
+
+                <!-- Họa tiết hoa văn góc mạ vàng -->
+                <div class="corner-ornament top-left">
+                    <svg viewBox="0 0 60 60" fill="none">
+                        <path d="M5 55 C 5 25, 25 5, 55 5" stroke="url(#goldGradient)" stroke-width="2" stroke-linecap="round"/>
+                        <circle cx="5" cy="55" r="3" fill="#fbd786"/>
+                        <circle cx="55" cy="5" r="3" fill="#fbd786"/>
+                        <path d="M12 45 C 12 25, 25 12, 45 12" stroke="rgba(255, 215, 0, 0.4)" stroke-width="1.2" stroke-dasharray="2 3"/>
+                        <defs>
+                            <linearGradient id="goldGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+                                <stop offset="0%" stop-color="#fff2a1"/>
+                                <stop offset="50%" stop-color="#e2a578"/>
+                                <stop offset="100%" stop-color="#f7797d"/>
+                            </linearGradient>
+                        </defs>
+                    </svg>
+                </div>
+                <div class="corner-ornament top-right">
+                    <svg viewBox="0 0 60 60" fill="none">
+                        <path d="M5 5 C 35 5, 55 25, 55 55" stroke="url(#goldGradient)" stroke-width="2" stroke-linecap="round"/>
+                        <circle cx="5" cy="55" r="3" fill="#fbd786"/>
+                        <circle cx="55" cy="55" r="3" fill="#fbd786"/>
+                        <path d="M15 12 C 35 12, 48 25, 48 45" stroke="rgba(255, 215, 0, 0.4)" stroke-width="1.2" stroke-dasharray="2 3"/>
+                    </svg>
+                </div>
+                <div class="corner-ornament bottom-left">
+                    <svg viewBox="0 0 60 60" fill="none">
+                        <path d="M5 5 C 5 35, 25 55, 55 55" stroke="url(#goldGradient)" stroke-width="2" stroke-linecap="round"/>
+                        <circle cx="5" cy="55" r="3" fill="#fbd786"/>
+                        <circle cx="55" cy="55" r="3" fill="#fbd786"/>
+                    </svg>
+                </div>
+                <div class="corner-ornament bottom-right">
+                    <svg viewBox="0 0 60 60" fill="none">
+                        <path d="M55 5 C 55 35, 35 55, 5 55" stroke="url(#goldGradient)" stroke-width="2" stroke-linecap="round"/>
+                        <circle cx="55" cy="5" r="3" fill="#fbd786"/>
+                        <circle cx="55" cy="55" r="3" fill="#fbd786"/>
+                    </svg>
+                </div>
+
+                <!-- PHẦN THÂN THIỆP CÓ THỂ CUỘN ĐỌC NỘI DUNG (SCROLLABLE CARD BODY) -->
+                <div class="card-scroll-body" id="cardScrollBody">
+                    <!-- Tiêu đề nghệ thuật lấp lánh -->
+                    <h1 class="card-headline">
+                        <span class="script-accent">Happy</span>
+                        <span class="gold-gradient-text">Women's Day</span>
+                    </h1>
+
+                    <div class="decorative-separator">
+                        <span class="line line-left"></span>
+                        <span class="flower-center">❦ ✦ ❦</span>
+                        <span class="line line-right"></span>
+                    </div>
+
+                    <!-- Khu vực hiển thị lời chúc trọng tâm -->
+                    <div class="card-wish-container">
+                        <div class="quote-mark quote-start">“</div>
+                        <p class="wish-text" id="wishText">
+                            <%= message %>
+                        </p>
+                        <div class="quote-mark quote-end">”</div>
+                    </div>
+
+                    <!-- Dấu ấn thơ mộng cuối thiệp -->
+                    <div class="card-footer-seal">
+                        <div class="seal-flower">💐</div>
+                        <p class="seal-caption">Mãi luôn rạng ngời & tràn đầy hạnh phúc</p>
+                        <div class="sparkle-row">
+                            <span>✨</span>
+                            <span>💕</span>
+                            <span>✨</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Chỉ dẫn có thể cuộn (hiện nhẹ nếu nội dung dài) -->
+                <div class="scroll-indicator" id="scrollIndicator">
+                    <i class="fas fa-chevron-down"></i>
                 </div>
             </div>
         </div>
@@ -127,9 +176,6 @@
             <span>Chạm bất kỳ đâu trên màn hình để tung hoa 🌸</span>
         </div>
     </main>
-
-    <!-- Toast thông báo -->
-    <div id="toastNotification" class="toast">Đã sao chép lời chúc!</div>
 
     <!-- Scripts hiệu ứng & tương tác -->
     <script src="/js/main.js"></script>
