@@ -333,7 +333,9 @@
     });
 
     function updateCardTilt() {
-        if (card && isCardOpen) {
+        // Chỉ áp dụng 3D tilt trên màn hình máy tính (width > 768)
+        // Trên điện thoại, giữ thiệp thẳng đứng tự nhiên tránh bị nghiêng lệch chiều
+        if (card && isCardOpen && window.innerWidth > 768) {
             const diffX = (mouseX - width / 2) / (width / 2);
             const diffY = (mouseY - height / 2) / (height / 2);
 
@@ -349,15 +351,7 @@
     }
     requestAnimationFrame(updateCardTilt);
 
-    // Hỗ trợ cảm biến con quay hồi chuyển trên điện thoại
-    window.addEventListener('deviceorientation', (e) => {
-        if (e.gamma !== null && e.beta !== null) {
-            const gamma = Math.max(-25, Math.min(25, e.gamma));
-            const beta = Math.max(-25, Math.min(25, e.beta - 45));
-            currentRotateY = (gamma / 25) * 10;
-            currentRotateX = (-beta / 25) * 10;
-        }
-    });
+
 
 
     /* ==========================================================================

@@ -783,66 +783,176 @@ body.romantic-theme {
 }
 
 /* ==========================================================================
-   RESPONSIVE DESIGN (MOBILE & TABLET)
+   RESPONSIVE DESIGN (MOBILE & TABLET - CHUẨN THIỆP ĐỨNG DỌC)
    ========================================================================== */
 
 @media (max-width: 768px) {
+    /* Khung cảnh tổng thể */
+    .scene-viewport {
+        padding: 16px 12px;
+        min-height: 100vh;
+        justify-content: center;
+    }
+
+    /* Phong bì thư mobile chuẩn tỷ lệ */
     .envelope-box {
         width: 310px;
-        height: 200px;
+        height: 195px;
+        border-radius: 16px;
+    }
+
+    .env-letter-peek {
+        top: 12px;
+        left: 20px;
+        right: 20px;
+        height: 155px;
     }
 
     .env-fold-bottom {
-        border-width: 0 155px 110px 155px;
+        border-width: 0 155px 105px 155px;
     }
 
-    .env-fold-left, .env-fold-right {
-        border-width: 100px 155px 100px 0;
+    .env-fold-left {
+        border-width: 98px 0 97px 155px;
+        border-color: transparent transparent transparent #3d0e2c;
+    }
+
+    .env-fold-right {
+        border-width: 98px 155px 97px 0;
+        border-color: transparent #3d0e2c transparent transparent;
     }
 
     .env-flap {
-        height: 110px;
+        height: 105px;
     }
 
     .env-flap-inner {
-        border-width: 110px 155px 0 155px;
+        border-width: 105px 155px 0 155px;
     }
 
     .wax-seal {
-        top: 90px;
-        width: 50px;
-        height: 50px;
+        top: 86px;
+        width: 48px;
+        height: 48px;
+    }
+
+    .seal-emoji {
+        font-size: 20px;
+    }
+
+    /* CHIẾC THIỆP CHUẨN DÁNG ĐỨNG DỌC (PORTRAIT CARD CHO MOBILE) */
+    .card-wrapper {
+        width: 100%;
+        max-width: 355px; /* Giới hạn chiều ngang để tạo tỉ lệ thiệp đứng sang trọng */
+        padding: 8px 6px;
+    }
+
+    .cute-fold-btn {
+        align-self: center; /* Căn giữa nút trên mobile */
+        margin-bottom: 12px;
+        padding: 7px 16px;
+        font-size: 12px;
     }
 
     .romantic-card {
-        padding: 24px 18px 18px;
-        border-radius: 24px;
+        padding: 28px 16px 20px;
+        border-radius: 26px;
+        min-height: 540px;
+        max-height: 80vh;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        /* Vô hiệu hóa tilt góc lớn trên mobile để tránh lệch chiều */
+        transform: none !important;
+        animation: mobileFloat 5s ease-in-out infinite;
     }
 
+    @keyframes mobileFloat {
+        0%, 100% { transform: translateY(0); }
+        50% { transform: translateY(-6px); }
+    }
+
+    /* Thân thiệp có thể cuộn đọc trên mobile với thanh cuộn siêu mỏng */
     .card-scroll-body {
-        max-height: 55vh;
-        padding: 4px 8px;
+        max-height: 62vh;
+        padding: 4px 10px;
+        width: 100%;
+        scrollbar-width: thin;
+        scrollbar-color: rgba(255, 180, 140, 0.3) transparent;
+    }
+
+    .card-scroll-body::-webkit-scrollbar {
+        width: 3px;
+    }
+
+    .card-scroll-body::-webkit-scrollbar-thumb {
+        background: rgba(255, 190, 160, 0.35);
+        border-radius: 10px;
     }
 
     .card-headline {
-        font-size: 32px;
+        font-size: 30px;
+        margin-bottom: 6px;
     }
 
     .script-accent {
         font-size: 40px;
     }
 
-    .wish-text {
+    .gold-gradient-text {
         font-size: 19px;
-        line-height: 1.65;
+        letter-spacing: 2px;
     }
 
-    .seal-caption {
+    .decorative-separator {
+        width: 80%;
+        margin: 6px 0 12px;
+    }
+
+    .card-wish-container {
+        padding: 4px 6px 12px;
+    }
+
+    .quote-mark {
+        font-size: 42px;
+    }
+
+    .quote-start {
+        top: -14px;
+        left: 0px;
+    }
+
+    .quote-end {
+        bottom: -14px;
+        right: 0px;
+    }
+
+    .wish-text {
+        font-size: 18.5px;
+        line-height: 1.75;
+        padding: 4px 6px;
+    }
+
+    .card-footer-seal {
+        margin-top: 6px;
+    }
+
+    .seal-flower {
         font-size: 22px;
     }
 
+    .seal-caption {
+        font-size: 21px;
+    }
+
     .top-controls {
-        top: 16px;
-        right: 16px;
+        top: 14px;
+        right: 14px;
+    }
+
+    .control-btn {
+        padding: 7px 12px;
+        font-size: 12px;
     }
 }
+
