@@ -2,148 +2,159 @@
 <html lang="vi">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <title><%= title %></title>
+    
+    <!-- Google Fonts: Nghệ thuật & Tinh tế -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Alex+Brush&family=Cormorant+Garamond:ital,wght@0,400;0,600;1,400;1,600&family=Dancing+Script:wght@500;600;700&family=Montserrat:wght@300;400;500;600&display=swap" rel="stylesheet">
+    
+    <!-- Font Awesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    
+    <!-- Custom Styles -->
     <link rel="stylesheet" href="/css/style.css">
-    <link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@300;400;500;600;700&family=Pacifico&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
 </head>
-<body>
-    <div class="container">
-        <!-- Background decorations -->
-        <div class="bg-hearts">
-            <div class="heart heart-1">💖</div>
-            <div class="heart heart-2">💕</div>
-            <div class="heart heart-3">💗</div>
-            <div class="heart heart-4">💝</div>
-            <div class="heart heart-5">💘</div>
-        </div>
+<body class="romantic-theme">
+    <!-- Ambient Animated Background Lights -->
+    <div class="ambient-glow glow-1"></div>
+    <div class="ambient-glow glow-2"></div>
+    <div class="ambient-glow glow-3"></div>
 
-        <div class="main-content">
-            <header class="header">
-                <h1 class="title">
-                    <i class="fas fa-heart"></i>
-                    Ngày Phụ Nữ Việt Nam
-                    <i class="fas fa-heart"></i>
+    <!-- Canvas cho hiệu ứng Cánh hoa & Bụi sao bay lung linh -->
+    <canvas id="petalsCanvas"></canvas>
+
+    <!-- Header Actions (Âm thanh & Toàn màn hình) -->
+    <div class="top-controls">
+        <button id="musicToggleBtn" class="control-btn" title="Bật/Tắt nhạc nền lãng mạn">
+            <i class="fas fa-music"></i>
+            <span class="btn-text">Giai điệu</span>
+        </button>
+        <button id="fullscreenBtn" class="control-btn" title="Toàn màn hình">
+            <i class="fas fa-expand"></i>
+        </button>
+    </div>
+
+    <!-- Khung chứa Thiệp trung tâm -->
+    <main class="card-viewport" id="cardViewport">
+        <!-- Vòng hào quang phía sau thiệp -->
+        <div class="card-aura"></div>
+
+        <!-- Chiếc Thiệp 3D Siêu Thực -->
+        <div class="romantic-card" id="romanticCard">
+            <!-- Hiệu ứng phản chiếu ánh sáng lướt qua mặt kính -->
+            <div class="card-shine"></div>
+
+            <!-- Họa tiết hoa văn góc thiệp -->
+            <div class="corner-ornament top-left">
+                <svg viewBox="0 0 60 60" fill="none">
+                    <path d="M5 55 C 5 25, 25 5, 55 5" stroke="url(#goldGradient)" stroke-width="2" stroke-linecap="round"/>
+                    <circle cx="5" cy="55" r="3" fill="#fbd786"/>
+                    <circle cx="55" cy="5" r="3" fill="#fbd786"/>
+                    <path d="M12 45 C 12 25, 25 12, 45 12" stroke="rgba(255, 215, 0, 0.4)" stroke-width="1.2" stroke-dasharray="2 3"/>
+                    <defs>
+                        <linearGradient id="goldGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+                            <stop offset="0%" stop-color="#fff2a1"/>
+                            <stop offset="50%" stop-color="#e2a578"/>
+                            <stop offset="100%" stop-color="#f7797d"/>
+                        </linearGradient>
+                    </defs>
+                </svg>
+            </div>
+            <div class="corner-ornament top-right">
+                <svg viewBox="0 0 60 60" fill="none">
+                    <path d="M5 5 C 35 5, 55 25, 55 55" stroke="url(#goldGradient)" stroke-width="2" stroke-linecap="round"/>
+                    <circle cx="5" cy="5" r="3" fill="#fbd786"/>
+                    <circle cx="55" cy="55" r="3" fill="#fbd786"/>
+                    <path d="M15 12 C 35 12, 48 25, 48 45" stroke="rgba(255, 215, 0, 0.4)" stroke-width="1.2" stroke-dasharray="2 3"/>
+                </svg>
+            </div>
+            <div class="corner-ornament bottom-left">
+                <svg viewBox="0 0 60 60" fill="none">
+                    <path d="M5 5 C 5 35, 25 55, 55 55" stroke="url(#goldGradient)" stroke-width="2" stroke-linecap="round"/>
+                    <circle cx="5" cy="5" r="3" fill="#fbd786"/>
+                    <circle cx="55" cy="55" r="3" fill="#fbd786"/>
+                </svg>
+            </div>
+            <div class="corner-ornament bottom-right">
+                <svg viewBox="0 0 60 60" fill="none">
+                    <path d="M55 5 C 55 35, 35 55, 5 55" stroke="url(#goldGradient)" stroke-width="2" stroke-linecap="round"/>
+                    <circle cx="55" cy="5" r="3" fill="#fbd786"/>
+                    <circle cx="5" cy="55" r="3" fill="#fbd786"/>
+                </svg>
+            </div>
+
+            <!-- Nội dung Thiệp -->
+            <div class="card-inner">
+                <!-- Huy hiệu Ngày Phụ Nữ 8/3 -->
+                <div class="card-badge">
+                    <span class="badge-icon">🌸</span>
+                    <span class="badge-text">Ngày Quốc Tế Phụ Nữ 8/3</span>
+                    <span class="badge-icon">🌸</span>
+                </div>
+
+                <!-- Tiêu đề nghệ thuật lấp lánh -->
+                <h1 class="card-headline">
+                    <span class="script-accent">Happy</span>
+                    <span class="gold-gradient-text">Women's Day</span>
                 </h1>
-                <div class="subtitle">8 tháng 3</div>
-            </header>
 
-            <div class="love-message">
-                <div class="message-container">
-                    <i class="fas fa-quote-left"></i>
-                    <p class="message-text"><%= randomMessage %></p>
-                    <i class="fas fa-quote-right"></i>
-                </div>
-            </div>
-
-            <div class="description">
-                <p>Gửi tặng thông điệp yêu thương đến người phụ nữ đặc biệt trong cuộc đời bạn.</p>
-                <p>Tạo thiệp tình yêu với QR code độc đáo và chia sẻ ngay!</p>
-            </div>
-
-            <button class="create-btn" onclick="openModal()">
-                <i class="fas fa-heart"></i>
-                Tạo Yêu Thương
-                <i class="fas fa-heart"></i>
-            </button>
-        </div>
-    </div>
-
-    <!-- Modal for creating gift -->
-    <div id="giftModal" class="modal">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h2><i class="fas fa-gift"></i> Tạo Thiệp Yêu Thương</h2>
-                <span class="close" onclick="closeModal()">&times;</span>
-            </div>
-            
-            <form id="giftForm" action="/create-gift" method="POST" enctype="multipart/form-data">
-                <div class="form-group">
-                    <label for="receiver">
-                        <i class="fas fa-user-heart"></i>
-                        Người nhận
-                    </label>
-                    <input type="text" id="receiver" name="receiver" required 
-                           placeholder="Ví dụ: Mẹ, Em gái, Bạn gái...">
+                <div class="decorative-separator">
+                    <span class="line line-left"></span>
+                    <span class="flower-center">❦ ✦ ❦</span>
+                    <span class="line line-right"></span>
                 </div>
 
-                <div class="form-group">
-                    <label for="sender">
-                        <i class="fas fa-user"></i>
-                        Người gửi
-                    </label>
-                    <input type="text" id="sender" name="sender" required 
-                           placeholder="Tên của bạn">
+                <!-- Khu vực hiển thị lời chúc trọng tâm -->
+                <div class="card-wish-container">
+                    <div class="quote-mark quote-start">“</div>
+                    <p class="wish-text" id="wishText" contenteditable="false" spellcheck="false">
+                        <%= message %>
+                    </p>
+                    <div class="quote-mark quote-end">”</div>
                 </div>
 
-                <div class="form-group">
-                    <label for="message">
-                        <i class="fas fa-comment-heart"></i>
-                        Tin nhắn yêu thương
-                    </label>
-                    <div class="ai-message-section">
-                        <div class="ai-controls">
-                            <select id="relationship" class="relationship-select">
-                                <option value="mẹ">Mẹ</option>
-                                <option value="bạn gái">Bạn gái</option>
-                                <option value="vợ">Vợ</option>
-                                <option value="chị gái">Chị gái</option>
-                                <option value="em gái">Em gái</option>
-                                <option value="bà ngoại">Bà ngoại</option>
-                                <option value="cô giáo">Cô giáo</option>
-                                <option value="bạn thân">Bạn thân</option>
-                            </select>
-                            <button type="button" id="generateAI" class="ai-btn">
-                                <i class="fas fa-magic"></i>
-                                Tạo bằng AI
-                            </button>
-                        </div>
-                        <div id="aiLoading" class="ai-loading" style="display: none;">
-                            <i class="fas fa-spinner fa-spin"></i>
-                            Đang tạo tin nhắn...
-                        </div>
+                <!-- Dấu ấn thơ mộng cuối thiệp -->
+                <div class="card-footer-seal">
+                    <div class="seal-flower">💐</div>
+                    <p class="seal-caption">Mãi luôn rạng ngời & tràn đầy hạnh phúc</p>
+                    <div class="sparkle-row">
+                        <span>✨</span>
+                        <span>💕</span>
+                        <span>✨</span>
                     </div>
-                    <textarea id="message" name="message" required 
-                              placeholder="Viết tin nhắn yêu thương của bạn..."></textarea>
                 </div>
+            </div>
 
-                <div class="form-group">
-                    <label for="template">
-                        <i class="fas fa-palette"></i>
-                        Chọn mẫu thiệp
-                    </label>
-                    <select id="template" name="template" required>
-                        <option value="pink_hearts">💖 Trái Tim Hồng</option>
-                        <option value="floral_garden">🌸 Vườn Hoa</option>
-                        <option value="romantic_sunset">🌅 Hoàng Hôn Lãng Mạn</option>
-                    </select>
-                </div>
-
-                <div class="form-group">
-                    <label for="image">
-                        <i class="fas fa-image"></i>
-                        Ảnh kèm theo (tùy chọn)
-                    </label>
-                    <input type="file" id="image" name="image" accept="image/*">
-                    <small>Chỉ chấp nhận file ảnh (JPG, PNG, GIF) tối đa 5MB</small>
-                </div>
-
-                <div class="form-actions">
-                    <button type="button" class="cancel-btn" onclick="closeModal()">
-                        <i class="fas fa-times"></i>
-                        Hủy
-                    </button>
-                    <button type="submit" class="submit-btn">
-                        <i class="fas fa-heart"></i>
-                        Tạo Thiệp
-                    </button>
-                </div>
-            </form>
+            <!-- Thanh công cụ nhỏ nhẹ dưới đáy thiệp -->
+            <div class="card-action-bar">
+                <button class="action-btn" id="editWishBtn" title="Chỉnh sửa lời chúc này">
+                    <i class="fas fa-pen-fancy"></i>
+                    <span>Sửa lời chúc</span>
+                </button>
+                <button class="action-btn" id="burstPetalsBtn" title="Bung tỏa hoa">
+                    <i class="fas fa-wand-magic-sparkles"></i>
+                    <span>Tung hoa</span>
+                </button>
+                <button class="action-btn" id="copyWishBtn" title="Sao chép lời chúc">
+                    <i class="fas fa-copy"></i>
+                    <span>Sao chép</span>
+                </button>
+            </div>
         </div>
-    </div>
 
+        <!-- Hướng dẫn tương tác chạm màn hình -->
+        <div class="interaction-hint" id="interactionHint">
+            <span class="hint-pulse"></span>
+            <span>Chạm bất kỳ đâu trên màn hình để tung hoa 🌸</span>
+        </div>
+    </main>
+
+    <!-- Toast thông báo -->
+    <div id="toastNotification" class="toast">Đã sao chép lời chúc!</div>
+
+    <!-- Scripts hiệu ứng & tương tác -->
     <script src="/js/main.js"></script>
 </body>
 </html>
-

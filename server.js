@@ -66,12 +66,16 @@ const loveMessages = [
 
 // Routes
 app.get('/', (req, res) => {
-    const randomMessage = loveMessages[Math.floor(Math.random() * loveMessages.length)];
+    const customMessage = req.query.msg || req.query.message;
+    const defaultMessage = process.env.CARD_MESSAGE || "Chúc một nửa thế giới một ngày 8/3 ngập tràn niềm vui, luôn rạng rỡ, xinh đẹp và hạnh phúc. Mong bạn luôn được yêu thương, trân trọng và tỏa sáng theo cách đặc biệt nhất của chính mình!";
+    const message = customMessage || defaultMessage;
+    
     res.render('index', {
-        randomMessage,
-        title: 'Ngày Phụ Nữ Việt Nam - Tạo Thiệp Yêu Thương'
+        message,
+        title: 'Chúc Mừng Ngày Quốc Tế Phụ Nữ 8/3 - Happy Women\'s Day'
     });
 });
+
 
 // Generate AI message
 app.post('/api/generate-message', async (req, res) => {
