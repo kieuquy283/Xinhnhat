@@ -151,6 +151,16 @@ body.romantic-theme {
     background: linear-gradient(135deg, rgba(255, 117, 140, 0.4), rgba(255, 160, 122, 0.4));
     border-color: var(--gold-2);
     color: #fff;
+    box-shadow: 0 0 15px rgba(255, 117, 140, 0.5);
+}
+
+.control-btn.active .fa-music {
+    animation: musicPulse 1.2s ease-in-out infinite alternate;
+}
+
+@keyframes musicPulse {
+    0% { transform: scale(1) rotate(-8deg); }
+    100% { transform: scale(1.25) rotate(10deg); color: var(--gold-1); }
 }
 
 /* ==========================================================================

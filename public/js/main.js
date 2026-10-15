@@ -247,6 +247,7 @@
 
         initAudio();
         playChimeSound();
+        playBackgroundMusic();
 
         // 1. Mở nắp phong bì
         envelopeBox.classList.add('is-open');
@@ -403,44 +404,68 @@
         playNote(note * 1.5, 1.2, 0.04);
     }
 
-    const MELODY_SEQUENCE = [
-        [0, 2, 4], [3, 5], [4, 6], [2, 4, 7],
-        [1, 3, 5], [0, 4, 7], [3, 6], [2, 5, 8]
-    ];
-    let melodyIndex = 0;
+    /* ==========================================================================
+       NHẠC NỀN CHÍNH THỨC (the_mountain-love-591389.mp3)
+       ========================================================================== */
 
-    function playMelodyStep() {
-        if (!isMusicPlaying) return;
+    let bgAudio = null;
+    function getBgAudio() {
+        if (!bgAudio) {
+            bgAudio = document.getElementById('bgAudio') || new Audio('/audio/the_mountain-love-591389.mp3');
+            bgAudio.loop = true;
+            bgAudio.volume = 0.75;
+        }
+        return bgAudio;
+    }
 
-        const chordIndices = MELODY_SEQUENCE[melodyIndex % MELODY_SEQUENCE.length];
-        chordIndices.forEach((idx, i) => {
-            setTimeout(() => {
-                if (isMusicPlaying) {
-                    playNote(NOTES[idx % NOTES.length], 3.0, 0.05);
+    function playBackgroundMusic() {
+        const audio = getBgAudio();
+        if (!audio) return;
+
+        const playPromise = audio.play();
+        if (playPromise !== undefined) {
+            playPromise.then(() => {
+                isMusicPlaying = true;
+                const musicBtn = document.getElementById('musicToggleBtn');
+                if (musicBtn) {
+                    musicBtn.classList.add('active');
+                    const text = musicBtn.querySelector('.btn-text');
+                    if (text) text.textContent = 'Đang phát';
                 }
-            }, i * 220);
-        });
+            }).catch((err) => {
+                console.log('Autoplay prevented or waiting for interaction:', err);
+                isMusicPlaying = false;
+            });
+        }
+    }
 
-        melodyIndex++;
-        melodyTimer = setTimeout(playMelodyStep, 2200);
+    function pauseBackgroundMusic() {
+        const audio = getBgAudio();
+        if (!audio) return;
+
+        audio.pause();
+        isMusicPlaying = false;
+        const musicBtn = document.getElementById('musicToggleBtn');
+        if (musicBtn) {
+            musicBtn.classList.remove('active');
+            const text = musicBtn.querySelector('.btn-text');
+            if (text) text.textContent = 'Giai điệu';
+        }
+    }
+
+    function toggleBackgroundMusic() {
+        if (isMusicPlaying) {
+            pauseBackgroundMusic();
+        } else {
+            playBackgroundMusic();
+        }
     }
 
     const musicBtn = document.getElementById('musicToggleBtn');
     if (musicBtn) {
         musicBtn.addEventListener('click', (e) => {
             e.stopPropagation();
-            initAudio();
-
-            isMusicPlaying = !isMusicPlaying;
-            if (isMusicPlaying) {
-                musicBtn.classList.add('active');
-                musicBtn.querySelector('.btn-text').textContent = 'Đang phát';
-                playMelodyStep();
-            } else {
-                musicBtn.classList.remove('active');
-                musicBtn.querySelector('.btn-text').textContent = 'Giai điệu';
-                clearTimeout(melodyTimer);
-            }
+            toggleBackgroundMusic();
         });
     }
 

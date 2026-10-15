@@ -12,6 +12,10 @@ yarn-error.log*
 .env.production.local
 .env.prod
 
+# Artifacts
+artifacts/
+
+
 # Logs
 logs/
 *.log
@@ -85,7 +89,8 @@ dist
 
 # Gatsby files
 .cache/
-public
+public/uploads/*
+!public/uploads/.gitkeep
 
 # Storybook build outputs
 .out

@@ -69,7 +69,7 @@ app.get('/', (req, res) => {
     const customMessage = req.query.msg || req.query.message;
     const defaultMessage = process.env.CARD_MESSAGE || `Chúc bạn yêu 20/10 vui vẻ!
 
-Mình viết làm cái này trước lúc bạn thi nên là mình chúc bạn thi tốt nhé.
+Mình làm cái này trước lúc bạn thi nên là mình chúc bạn thi tốt nhé.
 Chúc bạn là luôn luôn xinh đẹp và hoàn thành được những mục tiêu sắp tới, hoàn thành KLTN, tốt nghiệp xuất sắc, có được dự định tương lai.
 
 Thật sự là từ lúc mà bạn bảo bạn thi xong bạn về quê, mình cũng có nhiều tâm trạng, cũng muốn gặp bạn để nói chuyện nhưng mà bạn còn những việc khác nữa. Mà mình cũng không biết là mình có gặp được bạn trước khi bạn về không, nên là mình nói một chút qua cái này nhé.
@@ -84,7 +84,7 @@ Mình cũng mông lung lắm. Mình làm những thứ không chắc chắn nó 
 
 Bạn thích cuộc sống dễ chịu, ưa nghe lời dễ nghe trong khi mình lại không hay nói lời nhẹ nhàng. Mình biết là trong thời gian qua, bạn đã phải chịu đựng mình nhiều. Mình thương bạn lắm nhưng cũng chẳng thay đổi được thời gian. Có thể nhiều lúc bạn thấy mình thờ ơ, vô tâm hay tồi gì đó nhưng mình mong là bạn nhớ bạn luôn có vị trí đặc biệt đối với mình và mình thương bạn là thật.
 
-Mẹ mình hay dạy mình sự nhẹ nhàng, tử tế. Mình không giỏi dùng những điều đấy nhưng mà mình chưa gọt rũa hay làm cho nó hào nhoáng. Mình luôn muốn gửi gắm những điều đấy ở nơi bạn một cách chân thành nhất. Có thể là trước giờ mình làm chưa tốt nhưng nếu có cơ hội mình chắc chắn sẽ cố gắng.
+Mẹ mình hay dạy mình sự nhẹ nhàng, sự tử tế. Mình không giỏi dùng những điều đấy nhưng mà mình chưa gọt rũa hay làm cho nó hào nhoáng. Mình luôn muốn gửi gắm những điều đấy ở nơi bạn một cách chân thành nhất. Có thể là trước giờ mình làm chưa tốt nhưng nếu có cơ hội mình chắc chắn sẽ cố gắng.
 
 Chúc chúc bạn nhé.
 Luôn luôn xinh đẹp, luôn luôn hạnh phúc.
